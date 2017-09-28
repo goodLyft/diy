@@ -11,6 +11,9 @@ import {
   Text,
   View
 } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconsMap, iconsLoaded } from './helpers/icons-loader';
 
 export default class DIYProject extends Component {
   render() {
