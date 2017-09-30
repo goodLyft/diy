@@ -45,7 +45,6 @@
 		8CFE9DDB54B84A3FB51B3A06 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 296DFA4A94874FF6BFA65164 /* libRNVectorIcons.a */; };
 		92BC535B4E314578B48D2481 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F58510FE1CBA49819396AA28 /* Entypo.ttf */; };
 		953250A68D46423F9222BEE8 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53917D21AFBB42DE96238694 /* Feather.ttf */; };
-		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B167CDFE086146D28E04F3F6 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0C396BF92CE4950A88817B5 /* EvilIcons.ttf */; };
 		C64C7B9A817748BA946BECC5 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 079A6A9E60C34B5CB649B325 /* libReactNativeNavigation.a */; };
 		EA97177B9CC04DEB9985EA43 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EAF8B19F5C9482F86B45AB2 /* Zocial.ttf */; };
@@ -356,7 +355,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
