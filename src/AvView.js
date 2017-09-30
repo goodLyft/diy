@@ -14,7 +14,7 @@ export default class AvView extends Component {
     duration: 0.0,
     currentTime: 0.0,
     controls: false,
-    paused: true,
+    paused: false,
     skin: 'custom',
     ignoreSilentSwitch: null,
     isBuffering: false,
@@ -54,7 +54,12 @@ export default class AvView extends Component {
         <View>
           <Image
             source={{ uri: this.props.source }}
-            style={{ width, height: this.state.imageHeight }}
+            style={{
+              width: this.state.imageHeight / 2 ,
+              height: this.state.imageHeight / 2,
+              borderColor: 'white',
+              borderWidth: 1,
+            }}
             resizeMode={'contain'}
           />
         </View>

@@ -1,83 +1,185 @@
-import React, { Component } from 'react'
-import { View, Image, Text, StyleSheet, FlatList } from 'react-native'
-import Video from 'react-native-video'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import AvView from '../AvView'
+import React, { Component } from 'react';
+import _ from 'lodash';
+import { View, Image, Text, StyleSheet, FlatList, ListView, ScrollView } from 'react-native';
+import Video from 'react-native-video';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AvView from '../AvView';
+import GridView from 'react-native-grid-view';
 
-const data = [{
-  key: 1,
-  username: 'james',
-  type: 'video',
-  source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/videos/drive.mov',
-  avatarUrl: 'https://unsplash.it/100?image=1005'
-}, {
-  key: 2,
-  username: 'jennifer',
-  type: 'image',
-  source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/images/baking.jpg',
-  avatarUrl: 'https://unsplash.it/100?image=1027'
-}, {
-  key: 3,
-  username: 'cathy',
-  type: 'video',
-  source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/videos/sky.mov',
-  avatarUrl: 'https://unsplash.it/100?image=996'
-}, {
-  key: 4,
-  username: 'zack',
-  type: 'image',
-  source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/images/landscape.jpg',
-  avatarUrl: 'https://unsplash.it/100?image=856'
-}, {
-  key: 5,
-  username: 'luke',
-  type: 'image',
-  source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/images/snow.jpg',
-  avatarUrl: 'https://unsplash.it/100?image=669'
-}, {
-  key: 6,
-  username: 'anna',
-  type: 'video',
-  source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/videos/garden.mov',
-  avatarUrl: 'https://unsplash.it/100?image=823'
-}, {
-  key: 7,
-  username: 'ken',
-  type: 'image',
-  source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/images/town.jpg',
-  avatarUrl: 'https://unsplash.it/100?image=550'
-}]
+const flashList = [
+  {
+    key: 1,
+    username: 'james',
+    type: 'video',
+    source: 'https://ccs3.akamaized.net/cchanclips/e1bb9e32e2184b119a1ea010bd59bc52/clip.mp4',
+    avatarUrl: 'https://unsplash.it/100?image=1005',
+  },
+];
+
+const gridList = [
+  {
+    key: 2,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://p.limia.jp/resize/sm1/images/39953/gallery/22337/79a5327085d18df7ce147f439b8a05ae.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 3,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://scontent-nrt1-1.cdninstagram.com/t51.2885-15/e35/12965072_1760356260862610_1579051254_n.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 4,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/12816919_971554389588698_1141072357_n.jpg?ig_cache_key=MTIyMDg3ODk0MjA1MjYyNjgyMw%3D%3D.2',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 5,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://scontent-nrt1-1.cdninstagram.com/t51.2885-15/e35/12105044_1507672059558266_572361402_n.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 6,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://scontent-nrt1-1.cdninstagram.com/t51.2885-15/e35/12965072_1760356260862610_1579051254_n.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 7,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://cdn7.roomclip.jp/v1/1536/roomclip-bucket/img_1536/2c42c0a6efd3cf694c8f20e8a0d0e504dc1a800d.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 8,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://cdn7.roomclip.jp/v1/1536/roomclip-bucket/img_1536/2c42c0a6efd3cf694c8f20e8a0d0e504dc1a800d.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 9,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/16465474_366505180414891_1288606453564702720_n.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 10,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/15876148_721475174693708_5802585672564867072_n.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 11,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://p.limia.jp/resize/sm1/images/39953/gallery/22337/79a5327085d18df7ce147f439b8a05ae.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 12,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://cdn.roomclip.jp/roomclip-bucket/img_640/23a4324211c566e15d807ec57e7d0c783c9f35a9.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+  {
+    key: 13,
+    username: 'jennifer',
+    type: 'image',
+    source: 'https://p.limia.jp/resize/sm1/images/39953/gallery/22337/79a5327085d18df7ce147f439b8a05ae.jpg',
+    avatarUrl: 'https://unsplash.it/100?image=1027',
+  },
+
+  // {
+  //   key: 3,
+  //   username: 'cathy',
+  //   type: 'video',
+  //   source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/videos/sky.mov',
+  //   avatarUrl: 'https://unsplash.it/100?image=996',
+  // },
+  // {
+  //   key: 4,
+  //   username: 'zack',
+  //   type: 'image',
+  //   source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/images/landscape.jpg',
+  //   avatarUrl: 'https://unsplash.it/100?image=856',
+  // },
+  // {
+  //   key: 5,
+  //   username: 'luke',
+  //   type: 'image',
+  //   source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/images/snow.jpg',
+  //   avatarUrl: 'https://unsplash.it/100?image=669',
+  // },
+  // {
+  //   key: 6,
+  //   username: 'anna',
+  //   type: 'video',
+  //   source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/videos/garden.mov',
+  //   avatarUrl: 'https://unsplash.it/100?image=823',
+  // },
+  // {
+  //   key: 7,
+  //   username: 'ken',
+  //   type: 'image',
+  //   source: 'https://github.com/saitoxu/InstaClone/raw/master/contents/images/town.jpg',
+  //   avatarUrl: 'https://unsplash.it/100?image=550',
+  // }
+];
 
 export default class HomeScreen extends Component {
-  render() {
+  _renderItem(item) {
+    return (
+      <AvView
+        type={item.type}
+        source={item.source}
+        key={item.key}
+      />
+    );
+  }
+
+  _flashList() {
     return (
       <FlatList
         style={{ flex: 1 }}
-        data={data}
+        data={flashList}
         renderItem={({ item }) => (
-          <View>
-            <View style={{ height: 60, backgroundColor: 'white', flexDirection: 'row' }}>
-              <Image
-                style={{ width: 36, height: 36, margin: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth, borderColor: 'lightgray' }}
-                source={{ uri: item.avatarUrl }}
-              />
-              <Text style={{ fontWeight: 'bold', height: 60, lineHeight: 60, flex: 1 }}>{item.username}</Text>
-              <Ionicons name="ios-more" size={30} color="black" style={{ lineHeight: 60, marginRight: 15 }} />
-            </View>
+          <View key={item.key}>
             <AvView type={item.type} source={item.source} />
-            <View style={{ height: 54, backgroundColor: 'white', flexDirection: 'row' }}>
-              <Ionicons name="ios-heart-outline" size={34} color="black" style={{ marginTop: 12, marginLeft: 15 }} />
-              <Ionicons name="ios-text-outline" size={34} color="black" style={{ marginTop: 12, marginLeft: 20 }} />
-              <Ionicons name="ios-send-outline" size={34} color="black" style={{ marginTop: 12, marginLeft: 20 }} />
-              <View style={{ flex: 1 }} />
-              <Ionicons name="ios-bookmark-outline" size={34} color="black" style={{ marginTop: 12, marginRight: 15 }} />
-            </View>
-            <View style={{ marginBottom: 20, paddingLeft: 15 }}>
-              <Text style={{ fontSize: 12, color: 'gray' }}>{'X MINUTES AGO'}</Text>
-            </View>
           </View>
         )}
       />
+    );
+  }
+
+
+  render() {
+    return (
+      <ScrollView>
+        <View style={{backgroundColor: 'white', flexDirection: 'row', borderWidth: 1 }}>
+          {this._flashList()}
+        </View>
+        <View style={{backgroundColor: 'white', flexDirection: 'row' }}>
+          <GridView
+            items={gridList}
+            itemsPerRow={2}
+            renderItem={this._renderItem}
+          />
+        </View>
+      </ScrollView>
     )
   }
+
 }
